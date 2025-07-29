@@ -12,8 +12,8 @@ spec:
         - containerPort: 3000
       env: # 여기에 환경 변수를 추가합니다.
         - name: NEXT_PUBLIC_SUPABASE_URL
-          value: "https://hmyxlictgsruhoosxbwc.supabase.co"
+          value: ""
         - name: NEXT_PUBLIC_SUPABASE_ANON_KEY
-          value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhteXhsaWN0Z3NydWhvb3N4YndjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM2ODczOTIsImV4cCI6MjA2OTI2MzM5Mn0.UVR0sZZaggqRvdepwLVuf13L1q2XrUDSpg2hUUKyGLo"
+          value: ""
         - name: NEXT_PUBLIC_API_BASE_URL
           value: "http://localhost:8080"
