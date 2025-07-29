@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-pod
+  labels:
+    app: backend
+spec:
+  containers:
+    - name: backend
+      image: calendar/k8s-labs-ddoddo-backend:v1 # Docker Hub 사용자 이름으로 변경 필요
+      ports:
+        - containerPort: 8080
+      env:
+        # Spring Boot application-dev.yml에서 참조하는 환경 변수
+        - name: JWT_SET_URI
+          value: "http://your-auth-server/jwks" # 실제 JWT Set URI로 변경하세요.
+        - name: JWT_SECRET_KEY
+          value: "your-jwt-secret-key" # 실제 JWT Secret Key로 변경하세요. 보안에 유의하세요.
+
+        # Cloudflare R2 설정 관련 환경 변수
+        - name: CLOUDFLARE_ACCESS_KEY_ID
+          value: "your_cloudflare_access_key_id" # 실제 Cloudflare Access Key ID로 변경하세요.
+        - name: CLOUDFLARE_SECRET_ACCESS_KEY
+          value: "your_cloudflare_secret_access_key" # 실제 Cloudflare Secret Access Key로 변경하세요.
+        - name: CLOUDFLARE_R2_BUCKET_NAME
+          value: "ddoddo-market-images" # 실제 R2 버킷 이름으로 변경하세요.
+        - name: CLOUDFLARE_ACCOUNT_ID
+          value: "your_cloudflare_account_id" # 실제 Cloudflare Account ID로 변경하세요.
+        - name: CLOUDFLARE_R2_PUBLIC_URL
+          value: "https://pub-xxxxxxxx.r2.dev" # 실제 R2 Public URL로 변경하세요.
