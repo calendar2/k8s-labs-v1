@@ -4,6 +4,11 @@ FROM node AS build
 # 앱 작업 디렉토리 설정
 WORKDIR /app
 
+# 빌드 시점에 API URL을 받을 ARG 선언
+ARG VITE_API_URL
+# 이 ARG 값을 컨테이너 내부의 환경 변수로 설정 (Vite가 빌드 시점에 읽을 수 있도록)
+ENV VITE_API_URL=$VITE_API_URL
+
 # 종속성 설치를 위한 package.json 및 package-lock.json 파일 복사
 COPY package*.json ./
 

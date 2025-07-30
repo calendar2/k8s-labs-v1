@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service # 서비스의 이름
+  labels:
+    app: todo-backend # 이 서비스의 레이블
+spec:
+  selector:
+    app:
+      todo-backend # 이 서비스가 트래픽을 전달할 파드를 선택하는 레이블입니다.
+      # 백엔드 Deployment의 template.metadata.labels.app과 동일해야 합니다.
+  type: ClusterIP # 클러스터 내부에서만 접근 가능한 가상 IP를 할당합니다.
+  ports:
+    - protocol: TCP # 사용할 프로토콜
+      port: 80 # 서비스가 노출할 포트 (클러스터 내부에서 이 서비스에 접근할 때 사용할 포트)
+      targetPort:
+        8080 # 파드(컨테이너)가 실제로 리스닝하는 포트입니다.
+        # 백엔드 컨테이너의 containerPort와 동일해야 합니다.

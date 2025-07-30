@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deployment
+  name: todo-frontend-deployment
+  labels:
+    app: todo-frontend # Deployment 자체의 레이블
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: todo-frontend
   template:
     metadata:
       labels:
-        app: frontend # Selector와 일치해야 함
+        app: todo-frontend # Selector와 일치해야 함
     spec:
       containers:
-        - name: frontend
+        - name: todo-frontend
           image: calendar/k8s-labs-todo-frontend:v1.0 # 본인의 이미지 주소로 변경
           ports:
             - containerPort: 3000

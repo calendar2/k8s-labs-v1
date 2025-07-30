@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-backend-deployment
+  labels:
+    app: todo-backend # Deployment 자체의 레이블
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo-backend
+  template:
+    metadata:
+      labels:
+        app: todo-backend
+    spec:
+      containers:
+        - name: todo-backend
+          # 본인의 v1.0 이미지 주소로 변경
+          image: calendar/k8s-labs-todo-backend:v7.0
+          # command: ["tail"] # <--- CMD 오버라이드
+          # args: ["-f", "/dev/null"] # <--- CMD 오버라이드
+          ports:
+            - containerPort: 8080
+          env: # 환경 변수 설정 (MySQL 연결 정보)
+            - name: MYSQL_HOST
+              value:
+                "todo-db-service" # MySQL 데이터베이스 서비스의 실제 호스트 이름으로 변경해야 합니다.
+                # 예: todo-db-service (만약 서비스 이름이 그렇다면)
+            - name: MYSQL_USER
+              value: "root" # 실제 MySQL 사용자 이름으로 변경하세요! (db-deployment.yaml의 MYSQL_USER와 일치)
+            - name: MYSQL_PASSWORD
+              value: "1234" # 실제 MySQL 비밀번호로 변경하세요! (db-deployment.yaml의 MYSQL_ROOT_PASSWORD와 일치)
+            - name: MYSQL_DATABASE
+              value: "todo_app_db"
