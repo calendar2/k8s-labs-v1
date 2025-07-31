@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todo-db-config
+data:
+  MYSQL_DATABASE: "todo_app_db"
+  MYSQL_USER: "root"
