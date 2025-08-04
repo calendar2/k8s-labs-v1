@@ -9,7 +9,7 @@ spec:
     app:
       todo-backend
       # 백엔드 Deployment의 template.metadata.labels.app과 동일해야 합니다.
-  type: ClusterIP # 클러스터 내부에서만 접근 가능한 가상 IP를 할당합니다.
+  type: NodePort
   ports:
     - protocol: TCP # 사용할 프로토콜
       port: 80 # 서비스가 노출할 포트 (클러스터 내부에서 이 서비스에 접근할 때 사용할 포트)
